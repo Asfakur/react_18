@@ -3,7 +3,7 @@ import Like from "./components/Like";
 function App() {
     return (
         <div>
-            <Like isLiked={true} />
+            <Like onClick={() => console.log('clicked')}/>
         </div>
     );
 }

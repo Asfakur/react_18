@@ -1,22 +1,31 @@
 import { useState } from "react";
-import { GoHeart, GoHeartFill } from "react-icons/go";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 interface Props {
-    isLiked: boolean;
+    onClick: () => void;
 }
 
-function Like({ isLiked }: Props) {
-    const [liked, setIsLiked] = useState(isLiked);
-    
-    const handleLike = () => {
-        setIsLiked(!liked);
-        liked === true ? console.log("Liked") : console.log("UnLiked");
-    };
+const Like = ({onClick}: Props) => {
+    const [status, setStatus] = useState(false);
+    const toggle = () => {
+        setStatus(!status);
+        onClick();
+    }
+    if (status)
+        return (
+            <AiFillHeart
+                color="#ff6b81"
+                size={20}
+                onClick={toggle}
+            />
+        );
     return (
-        <span className="" onClick={handleLike}>
-            {liked === true ? <GoHeartFill size="40" /> : <GoHeart size="40" />}
-        </span>
+        <AiOutlineHeart
+            color="#ff6b81"
+            size={20}
+            onClick={toggle}
+        />
     );
-}
+};
 
 export default Like;
