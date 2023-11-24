@@ -1,20 +1,16 @@
 import { Fragment, useState } from "react";
 import Button from "./Button";
+import Alert from "./Alert";
 
 function Dismissible() {
-  const [alert, setAlert] = useState(false);
+  const [alertVisible, setAlertVisibility] = useState(false);
 
   return (
     <Fragment>
-      <div
-        className={
-          alert === true ? "alert alert-warning alert-dismissible" : "d-none"
-        }
-      >
-        <strong>Alert</strong>
-        <button className="btn-close" onClick={() => setAlert(false)}></button>
-      </div>
-      <Button onClick={() => setAlert(true)}>Get Alert</Button>
+      {alertVisible && (
+        <Alert onClose={() => setAlertVisibility(false)}>Alert Message</Alert>
+      )}
+      <Button onClick={() => setAlertVisibility(true)}>Get Alert</Button>
     </Fragment>
   );
 }

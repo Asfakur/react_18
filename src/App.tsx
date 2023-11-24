@@ -3,10 +3,7 @@ import Dismissible from "./components/Dismissible";
 function App() {
   return (
     <div>
-      <Dismissible>
-
-      </Dismissible>
-      
+      <Dismissible />
     </div>
   );
 }
