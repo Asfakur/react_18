@@ -1,11 +1,12 @@
-import Button from "./components/Button";
+import Dismissible from "./components/Dismissible";
 
 function App() {
   return (
     <div>
-      <Button onClick={() => console.log("Clicked")}>
-        Click Me
-      </Button>
+      <Dismissible>
+
+      </Dismissible>
+      
     </div>
   );
 }
