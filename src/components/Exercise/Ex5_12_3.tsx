@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState } from 'react'
 
-function App() {
+const Ex5_12_3 = () => {
     const [cart, setCart] = useState({
         discount: 0.1,
         items: [
@@ -35,4 +35,4 @@ function App() {
     );
 }
 
-export default App;
+export default Ex5_12_3
