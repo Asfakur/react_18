@@ -1,11 +1,11 @@
-import Dismissible from "./components/Dismissible";
+import Like from "./components/Like";
 
 function App() {
-  return (
-    <div>
-      <Dismissible />
-    </div>
-  );
+    return (
+        <div>
+            <Like onClick={() => console.log('clicked')}/>
+        </div>
+    );
 }
 
 export default App;
