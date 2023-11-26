@@ -7,3 +7,7 @@ To install CSS-IN JS
 
 To install react-icons
 ```$ npm i react-icons```
+
+immer is used to update array and objects in useState hook.
+To install immer
+```$ npm i immer```

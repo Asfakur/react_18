@@ -1,8 +1,9 @@
-function Message() {
-    const name = 'React 18';
-    if(name)
-        return <h1>Hello {name}</h1>
-    return <h1>Hello JSX: JavaScript XML</h1>
-}
+let count = 0;
+
+const Message = () => {
+    count++;
+    console.log('Message called', count);
+    return <div>Message {count}</div>;
+};
 
 export default Message;
