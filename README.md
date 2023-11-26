@@ -11,3 +11,6 @@ To install react-icons
 immer is used to update array and objects in useState hook.
 To install immer
 ```$ npm i immer```
+
+Popular form validation library
+```$ npm install react-hook-form```
