@@ -14,3 +14,9 @@ To install immer
 
 Popular form validation library
 ```$ npm install react-hook-form```
+
+Jod for schema validation:
+```$ npm install zod```
+
+hookform/resolver is schema based validation library
+```$ npm install @hookform/resolvers```

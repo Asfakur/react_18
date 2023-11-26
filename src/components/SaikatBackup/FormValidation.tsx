@@ -1,21 +1,16 @@
 import { FieldValues, useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
 
-const schema = z.object({
-    name: z.string().min(3, { message: "Name must be at least 3 Characters" }),
-    age: z
-        .number({ invalid_type_error: "Age field is required." })
-        .min(18, { message: "Age must be at least 18." }),
-});
-type FormData = z.infer<typeof schema>;
+interface FormData {
+    name: string;
+    age: number;
+}
 
-const Form = () => {
+const FormValidation = () => {
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<FormData>({ resolver: zodResolver(schema) });
+    } = useForm<FormData>();
 
     const onSubmit = (data: FieldValues) => {
         console.log(data);
@@ -28,13 +23,18 @@ const Form = () => {
                     Name
                 </label>
                 <input
-                    {...register("name")}
+                    {...register("name", { required: true, minLength: 3 })}
                     id="name"
                     type="text"
                     className="form-control"
                 />
-                {errors.name && (
-                    <p className="text-danger">{errors.name.message}</p>
+                {errors.name?.type === "required" && (
+                    <p className="text-danger">The name field is required</p>
+                )}
+                {errors.name?.type === "minLength" && (
+                    <p className="text-danger">
+                        The name must be at least 3 characters
+                    </p>
                 )}
             </div>
             <div className="mb-3">
@@ -42,14 +42,12 @@ const Form = () => {
                     Age
                 </label>
                 <input
-                    {...register("age", { valueAsNumber: true })}
+                    {...register("age", { required: true, min: 0, max: 150 })}
                     id="age"
                     type="number"
                     className="form-control"
                 />
-                {errors.age && (
-                    <p className="text-danger">{errors.age.message}</p>
-                )}
+                {errors.age?.type === 'required' && <p className="text-danger">The age field is required</p>}
             </div>
             <button className="btn btn-primary" type="submit">
                 Submit
@@ -58,4 +56,4 @@ const Form = () => {
     );
 };
 
-export default Form;
+export default FormValidation;
