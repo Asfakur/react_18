@@ -1,6 +1,9 @@
 const Form = () => {
     return (
-        <form>
+        <form onSubmit={(event) => {
+            event.preventDefault();
+            console.log("Submitted");
+        }}>
             <div className="mb-3">
                 <label htmlFor="name" className="form-label">
                     Name
