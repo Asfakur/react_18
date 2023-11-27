@@ -1,4 +1,4 @@
-import {categories} from '../ExpenseTracker'
+import categories from "../categories";
 
 interface Props {
     onSelectCategory: (category: string) => void;

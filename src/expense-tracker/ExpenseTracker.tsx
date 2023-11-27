@@ -2,8 +2,8 @@ import { useState } from "react";
 import ExpenseList from "./components/ExpenseList";
 import ExpenseFilter from "./components/ExpenseFilter";
 import ExpenseForm from "./components/ExpenseForm";
+// import categories from "./categories";
 
-export const categories = ["Groceries", "Fruits", "Entertainment", "Vegetable"];
 
 const ExpenseTracker = () => {
     const [selectedCategory, setSelectedCategory] = useState("");
