@@ -20,3 +20,5 @@ Jod for schema validation:
 
 hookform/resolver is schema based validation library
 ```$ npm install @hookform/resolvers```
+
+```$ npm i axios```
