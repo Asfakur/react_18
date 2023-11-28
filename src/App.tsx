@@ -1,5 +1,5 @@
-import axios, { CanceledError } from "axios";
 import { useEffect, useState } from "react";
+import apiClient, { CanceledError } from "./services/api-client";
 
 interface User {
     id: number;
@@ -15,8 +15,8 @@ function App() {
         const controller = new AbortController();
         setLoading(true);
 
-        axios
-            .get<User[]>("https://jsonplaceholder.typicode.com/users", {
+        apiClient
+            .get<User[]>("/users", {
                 signal: controller.signal,
             })
             .then((res) => {
@@ -35,12 +35,10 @@ function App() {
     const deleteUser = (id: number) => {
         const originalUser = [...users];
         setUsers(users.filter((user) => user.id !== id));
-        axios
-            .delete(`https://jsonplaceholder.typicode.com/users/${id}`)
-            .catch((err) => {
-                setError(err.message);
-                setUsers(originalUser);
-            });
+        apiClient.delete(`/users/${id}`).catch((err) => {
+            setError(err.message);
+            setUsers(originalUser);
+        });
     };
 
     const updateUser = (user: User) => {
@@ -51,15 +49,10 @@ function App() {
         };
 
         setUsers(users.map((u) => (u.id === user.id ? updatedUser : u)));
-        axios
-            .put(
-                `https://jsonplaceholder.typicode.com/users/${user.id}`,
-                updatedUser
-            )
-            .catch((err) => {
-                setError(err.message);
-                setUsers(originalUser);
-            });
+        apiClient.put(`/users/${user.id}`, updatedUser).catch((err) => {
+            setError(err.message);
+            setUsers(originalUser);
+        });
     };
 
     const addUser = () => {
@@ -69,8 +62,8 @@ function App() {
         };
         const originalUser = [...users];
         setUsers([newUser, ...users]);
-        axios
-            .post("https://jsonplaceholder.typicode.com/users/", newUser)
+        apiClient
+            .post("/users/", newUser)
             .then(({ data: savedUser }) => setUsers([savedUser, ...users]))
             .catch((err) => {
                 setError(err.message);
