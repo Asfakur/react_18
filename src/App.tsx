@@ -9,7 +9,7 @@ function App() {
 
     useEffect(() => {
         setLoading(true);
-        const { request, cancel } = userService.getAllUsers();
+        const { request, cancel } = userService.getAll<User>();
         request
             .then((res) => {
                 setLoading(false);
@@ -28,7 +28,7 @@ function App() {
         const originalUser = [...users];
         setUsers(users.filter((user) => user.id !== id));
 
-        userService.deleteUser(id).catch((err) => {
+        userService.delete(id).catch((err) => {
             setError(err.message);
             setUsers(originalUser);
         });
@@ -43,7 +43,7 @@ function App() {
         setUsers([newUser, ...users]);
 
         userService
-            .createUser(newUser)
+            .create(newUser)
             .then(({ data: savedUser }) => setUsers([savedUser, ...users]))
             .catch((err) => {
                 setError(err.message);
@@ -51,7 +51,7 @@ function App() {
             });
     };
 
-    const updateUser = (user: User) => {
+    const update = (user: User) => {
         const originalUser = [...users];
         const updatedUser = {
             ...user,
@@ -59,7 +59,7 @@ function App() {
         };
 
         setUsers(users.map((u) => (u.id === user.id ? updatedUser : u)));
-        userService.updateUser(updatedUser).catch((err) => {
+        userService.update(updatedUser).catch((err) => {
             setError(err.message);
             setUsers(originalUser);
         });
@@ -89,7 +89,7 @@ function App() {
                             </button>
                             <button
                                 className="btn btn-info mx-1"
-                                onClick={() => updateUser(user)}
+                                onClick={() => update(user)}
                             >
                                 Update
                             </button>
